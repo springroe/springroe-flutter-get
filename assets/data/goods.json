@@ -1,0 +1,98 @@
+[
+  {
+    "id": "",
+    "picture": "assets/goods/goods1.webp",
+    "name": "Little girl",
+    "desc": "A cartoon little girl, Looks lovely",
+    "price": 99900,
+    "like": 1000
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods2.webp",
+    "name": "Smile cat",
+    "desc": "A smile little catty catty...",
+    "price": 12800,
+    "like": 840
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods3.webp",
+    "name": "Doraemon",
+    "desc": "We should remember Doraemon is our childhood friend",
+    "price": 2800,
+    "like": 9999
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods4.webp",
+    "name": "Cartoon cat",
+    "desc": "This cartoon cat is falling in love",
+    "price": 30000,
+    "like": 502
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods1.webp",
+    "name": "Little girl",
+    "desc": "A cartoon little girl, Looks lovely",
+    "price": 99900,
+    "like": 1000
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods2.webp",
+    "name": "Smile cat",
+    "desc": "A smile little catty catty...",
+    "price": 12800,
+    "like": 840
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods3.webp",
+    "name": "Doraemon",
+    "desc": "We should remember Doraemon is our childhood friend",
+    "price": 2800,
+    "like": 9999
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods4.webp",
+    "name": "Cartoon cat",
+    "desc": "This cartoon cat is falling in love",
+    "price": 30000,
+    "like": 502
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods1.webp",
+    "name": "Little girl",
+    "desc": "A cartoon little girl, Looks lovely",
+    "price": 99900,
+    "like": 1000
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods2.webp",
+    "name": "Smile cat",
+    "desc": "A smile little catty catty...",
+    "price": 12800,
+    "like": 840
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods3.webp",
+    "name": "Doraemon",
+    "desc": "We should remember Doraemon is our childhood friend",
+    "price": 2800,
+    "like": 9999
+  },
+  {
+    "id": "",
+    "picture": "assets/goods/goods4.webp",
+    "name": "Cartoon cat",
+    "desc": "This cartoon cat is falling in love",
+    "price": 30000,
+    "like": 502
+  }
+]

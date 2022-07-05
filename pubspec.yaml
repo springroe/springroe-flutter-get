@@ -1,0 +1,84 @@
+name: test_get
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  intl: ^0.17.0 #语言包规范:http://www.webapps-online.com/online-tools/languages-and-locales
+  cupertino_icons: ^1.0.5 #IOS风格图标
+
+  #主体框架
+  get: ^4.6.5
+  dio: ^4.0.6 #网络
+  shared_preferences: ^2.0.15 #存储
+
+  #工具
+  crypto: ^3.0.2 #加密
+  permission_handler: ^10.0.0 #权限处理
+  path_provider: ^2.0.11 #路径提供者
+
+  #UI
+  waterfall_flow: ^3.0.2 #瀑布流
+  pull_to_refresh: ^2.0.0 #下拉刷新
+  card_swiper: ^2.0.4 #Swiper
+  awesome_dialog: ^2.2.1 #Alert
+  flutter_slidable: ^1.3.0 #侧滑
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Source
+      fonts:
+        - asset: fonts/custom_font.otf
+
+  assets:
+    #登录
+    - assets/login/login_bg.png
+
+    #导航
+    - assets/navigator/ic_navi_home.png
+    - assets/navigator/ic_navi_cart.png
+    - assets/navigator/ic_navi_member.png
+
+    #商品
+    - assets/goods/goods1.webp
+    - assets/goods/goods2.webp
+    - assets/goods/goods3.webp
+    - assets/goods/goods4.webp
+    - assets/goods/ic_goods_boutique.png
+    - assets/goods/ic_goods_discount.png
+    - assets/goods/ic_goods_import.png
+    - assets/goods/ic_goods_preference.png
+    - assets/goods/ic_cart_add.png
+    - assets/goods/ic_cart_quantity_add.png
+    - assets/goods/ic_cart_quantity_minus.png
+
+    #公共
+    - assets/ic_more.png
+    - assets/ic_ring.png
+    - assets/ic_dollar.png
+    - assets/ic_like.png
+    - assets/ic_check_off.png
+    - assets/ic_check_on.png
+
+    #测试数据
+    - assets/data/goods.json
+flutter_intl:
+  enabled: true
