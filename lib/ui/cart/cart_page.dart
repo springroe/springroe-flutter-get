@@ -12,7 +12,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartController());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -270,10 +269,13 @@ class CartPage extends StatelessWidget {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.WARNING,
-      animType: AnimType.BOTTOMSLIDE,
-      title: 'Warning',
-      desc: 'Are you sure you want to remove this item?',
+      animType: AnimType.SCALE,
+      keyboardAware: false,
+      title: 'Are you sure?',
+      desc: 'remove this item?',
+      btnCancelText: 'No',
       btnCancelOnPress: () {},
+      btnOkText: 'Aye',
       btnOkOnPress: () {
         CartController.instance.commodities.removeAt(index);
       },

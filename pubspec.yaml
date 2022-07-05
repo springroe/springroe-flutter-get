@@ -80,5 +80,6 @@ flutter:
 
     #测试数据
     - assets/data/goods.json
+    - assets/data/user.json
 flutter_intl:
   enabled: true

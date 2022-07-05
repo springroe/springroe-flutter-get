@@ -44,7 +44,6 @@ class HomePage extends StatelessWidget {
         _onLoading();
       }
     });
-    Get.put(HomeController());
     return SmartRefresher(
       controller: _refreshController,
       onRefresh: _onRefresh,

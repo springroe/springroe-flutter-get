@@ -6,12 +6,23 @@ import 'package:test_get/ui/member/member_page.dart';
 import 'package:test_get/ui/navigator/controller/navigator_controller.dart';
 import 'package:test_get/widget/navigator/animated_bottom_navigation_bar.dart';
 
+import '../cart/controller/cart_controller.dart';
+import '../entrance/controller/login_controller.dart';
+import '../home/controller/home_controller.dart';
+import '../member/controller/member_controller.dart';
+
 class NavigatorPage extends StatelessWidget {
   const NavigatorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //配置Controller
     Get.put(NaviController());
+    Get.put(HomeController());
+    Get.put(CartController());
+    Get.put(MemberController());
+    Get.put(LoginController());
+
     return Obx(
       () => Scaffold(
         body: IndexedStack(

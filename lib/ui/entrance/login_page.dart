@@ -7,7 +7,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

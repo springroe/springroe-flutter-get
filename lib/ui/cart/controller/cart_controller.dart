@@ -35,6 +35,7 @@ class CartController extends GetxController {
     CartEntity cartEntity = commodities[index];
     cartEntity.checked = !cartEntity.checked;
     commodities[index] = cartEntity;
+    selectAll(commodities.every((element) => element.checked));
     _countSum();
   }
 
@@ -49,14 +50,14 @@ class CartController extends GetxController {
 
   quantityAdd(int index) {
     CartEntity cartEntity = commodities[index];
-    cartEntity.quantity = cartEntity.quantity+=1;
+    cartEntity.quantity = cartEntity.quantity += 1;
     commodities[index] = cartEntity;
     _countSum();
   }
 
   quantityMinus(int index) {
     CartEntity cartEntity = commodities[index];
-    cartEntity.quantity = cartEntity.quantity-=1;
+    cartEntity.quantity = cartEntity.quantity -= 1;
     commodities[index] = cartEntity;
     _countSum();
   }
