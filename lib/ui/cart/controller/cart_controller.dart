@@ -29,6 +29,10 @@ class CartController extends GetxController {
 
   removeCommodity(int index) {
     commodities.removeAt(index);
+    if (commodities.isEmpty) {
+      selectAll(false);
+    }
+    _countSum();
   }
 
   selectChange(int index) {
@@ -63,6 +67,9 @@ class CartController extends GetxController {
   }
 
   _countSum() {
+    if (commodities.isEmpty) {
+      total(0);
+    }
     total(commodities.map((element) {
       return element.checked ? element.goodsEntity.price * element.quantity : 0;
     }).reduce((previousValue, element) => previousValue + element));

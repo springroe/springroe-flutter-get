@@ -31,8 +31,8 @@ dependencies:
   waterfall_flow: ^3.0.2 #瀑布流
   pull_to_refresh: ^2.0.0 #下拉刷新
   card_swiper: ^2.0.4 #Swiper
-  awesome_dialog: ^2.2.1 #Alert
-  flutter_slidable: ^1.3.0 #侧滑
+  awesome_dialog: ^3.0.0 #Alert
+  flutter_slidable: ^2.0.0 #侧滑
 
 dev_dependencies:
   flutter_test:

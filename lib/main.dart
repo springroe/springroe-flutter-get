@@ -17,7 +17,6 @@ import 'package:test_get/ui/navigator/navigator_page.dart';
 void main() {
   runApp(const MyApp());
 
-  //Android沉浸式设置，IOS自求多福
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

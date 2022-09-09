@@ -277,7 +277,7 @@ class CartPage extends StatelessWidget {
       btnCancelOnPress: () {},
       btnOkText: 'Aye',
       btnOkOnPress: () {
-        CartController.instance.commodities.removeAt(index);
+        CartController.instance.removeCommodity(index);
       },
     ).show();
   }
