@@ -24,15 +24,16 @@ dependencies:
 
   #工具
   crypto: ^3.0.2 #加密
-  permission_handler: ^10.0.0 #权限处理
+  permission_handler: ^10.2.0 #权限处理
   path_provider: ^2.0.11 #路径提供者
 
   #UI
   waterfall_flow: ^3.0.2 #瀑布流
   pull_to_refresh: ^2.0.0 #下拉刷新
   card_swiper: ^2.0.4 #Swiper
-  awesome_dialog: ^3.0.0 #Alert
+  awesome_dialog: ^3.0.2 #Alert
   flutter_slidable: ^2.0.0 #侧滑
+  badges: ^2.0.3 #徽章
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,11 @@ flutter:
     - assets/navigator/ic_navi_home.png
     - assets/navigator/ic_navi_cart.png
     - assets/navigator/ic_navi_member.png
+
+    #Banner
+    - assets/banner/banner1.webp
+    - assets/banner/banner2.webp
+    - assets/banner/banner3.webp
 
     #商品
     - assets/goods/goods1.webp

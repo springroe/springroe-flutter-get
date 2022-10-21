@@ -13,7 +13,7 @@ class CartController extends GetxController {
 
   addCommodity(GoodsEntity goodsEntity) {
     int index = commodities
-        .indexWhere((element) => element.goodsEntity.name == goodsEntity.name);
+        .indexWhere((element) => element.goodsEntity.id == goodsEntity.id);
     if (index > -1) {
       CartEntity cartEntity = commodities[index];
       cartEntity.quantity = cartEntity.quantity + 1;

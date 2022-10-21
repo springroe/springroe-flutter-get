@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -123,7 +124,7 @@ class HomePage extends StatelessWidget {
             height: 200,
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
-                return Image.network(
+                return Image.asset(
                   HomeController.instance.bannerImages[index],
                   fit: BoxFit.fill,
                 );
@@ -234,9 +235,32 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     CartController.instance.addCommodity(item);
                   },
-                  icon: Image.asset(
-                    'assets/goods/ic_cart_add.png',
-                    color: Colors.pink,
+                  icon: Obx(
+                    () => CartController.instance.commodities.indexWhere(
+                                (element) =>
+                                    element.goodsEntity.id == item.id) >
+                            -1
+                        ? Badge(
+                            badgeContent: Text(
+                              CartController
+                                  .instance
+                                  .commodities[CartController
+                                      .instance.commodities
+                                      .indexWhere((element) =>
+                                          element.goodsEntity.id == item.id)]
+                                  .quantity
+                                  .toString(),
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            child: Image.asset(
+                              'assets/goods/ic_cart_add.png',
+                              color: Colors.pink,
+                            ),
+                          )
+                        : Image.asset(
+                            'assets/goods/ic_cart_add.png',
+                            color: Colors.pink,
+                          ),
                   ),
                 ),
               ],
@@ -249,24 +273,25 @@ class HomePage extends StatelessWidget {
 
   Widget _popularItem(TabItem item, VoidCallback onTap) {
     return Expanded(
-        child: GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Image.asset(
-            item.icon,
-            width: 40,
-            height: 40,
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Text(
-            item.name,
-            style: const TextStyle(color: Colors.grey),
-          )
-        ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Image.asset(
+              item.icon,
+              width: 40,
+              height: 40,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              item.name,
+              style: const TextStyle(color: Colors.grey),
+            )
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
