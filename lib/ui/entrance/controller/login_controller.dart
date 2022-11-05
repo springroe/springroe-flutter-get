@@ -9,6 +9,7 @@ class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
   var user = UserEntity().obs;
+  var isLogin = false.obs;
 
   String account = '1@1.com';
   String password = 'a1234567';
@@ -41,10 +42,12 @@ class LoginController extends GetxController {
       UserEntity userEntity = UserEntity();
       userEntity.account = '1@1.com';
       userEntity.nickname = '有点上火';
-      userEntity.avatar = 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F09%2F44%2F5d%2F09445d7fe08dc405a67b8bff169f9825.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670226224&t=4dc5d184bdd3dd43f09eb13cdc46de71';
+      userEntity.avatar =
+          'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F09%2F44%2F5d%2F09445d7fe08dc405a67b8bff169f9825.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670226224&t=4dc5d184bdd3dd43f09eb13cdc46de71';
       userEntity.age = 28;
       userEntity.gender = 0;
       user(userEntity);
+      isLogin(true);
       debugPrint('作弊登录通过');
       return null;
     }
@@ -61,10 +64,13 @@ class LoginController extends GetxController {
     return null;
   }
 
+  logout() {
+    isLogin(false);
+  }
+
   @override
   onInit() {
     debugPrint('初始化数据，例如列表第一页，用户信息，商品信息等');
-    user(null);
     super.onInit();
   }
 

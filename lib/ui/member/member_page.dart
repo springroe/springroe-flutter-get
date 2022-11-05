@@ -17,31 +17,31 @@ class MemberPage extends StatelessWidget {
           left: 0,
           right: 0,
           top: 100,
-          child: ValueBuilder<UserEntity?>(
-              initialValue: LoginController.instance.user.subject.value,
-              builder: (value, user) {
-                if (value != null) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              CachedNetworkImageProvider(value.avatar),
-                        ),
+          child: ObxValue<RxBool>(
+            (data) {
+              if (data.isTrue) {
+                UserEntity user = LoginController.instance.user.value;
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 80,
+                      width: 80,
+                      child: CircleAvatar(
+                        backgroundImage:
+                            CachedNetworkImageProvider(user.avatar),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                          value.nickname,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                      )
-                    ],
-                  );
-                }
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        user.nickname,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    )
+                  ],
+                );
+              } else {
                 return GestureDetector(
                   onTap: () => Get.to(const LoginPage()),
                   child: const SizedBox(
@@ -53,7 +53,10 @@ class MemberPage extends StatelessWidget {
                     ),
                   ),
                 );
-              }),
+              }
+            },
+            LoginController.instance.isLogin,
+          ),
         ),
         Positioned(
           left: 0,
@@ -144,6 +147,7 @@ class MemberPage extends StatelessWidget {
           btnCancelOnPress: () {},
           btnOkText: 'Aye',
           btnOkOnPress: () {
+            LoginController.instance.logout();
             Get.to(const LoginPage());
           },
         ).show();

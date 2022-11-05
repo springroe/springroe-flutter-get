@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                       LoginController.instance.login().then((exception) {
                         EasyLoading.dismiss();
                         if (exception == null) {
-                          Get.off(const NavigatorPage());
+                          Get.offAll(const NavigatorPage());
                         } else {
                           AwesomeDialog(
                             context: context,
