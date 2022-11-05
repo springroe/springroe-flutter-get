@@ -11,7 +11,7 @@ class ApiException implements Exception {
 
   @override
   String toString() {
-    return "ApiErrorCode:($_code) \nMessage:($_message)";
+    return "ErrorCode:($_code) \n$_message";
   }
 
   factory ApiException.create(DioError error, String? message) {

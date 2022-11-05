@@ -1,8 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_get/model/user_entity.dart';
+import 'package:test_get/ui/entrance/controller/login_controller.dart';
 import 'package:test_get/ui/entrance/login_page.dart';
-import 'package:test_get/ui/member/controller/member_controller.dart';
 
 class MemberPage extends StatelessWidget {
   const MemberPage({Key? key}) : super(key: key);
@@ -15,15 +17,36 @@ class MemberPage extends StatelessWidget {
           left: 0,
           right: 0,
           top: 100,
-          child: ValueBuilder(
-              initialValue: MemberController.instance.user,
+          child: ValueBuilder<UserEntity?>(
+              initialValue: LoginController.instance.user.subject.value,
               builder: (value, user) {
-                // TODO - 考虑下没有用户的时候是登录，登录后显示用户头像
+                if (value != null) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: CircleAvatar(
+                          backgroundImage:
+                              CachedNetworkImageProvider(value.avatar),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          value.nickname,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      )
+                    ],
+                  );
+                }
                 return GestureDetector(
                   onTap: () => Get.to(const LoginPage()),
                   child: const SizedBox(
-                    height: 100,
-                    width: 100,
+                    height: 80,
+                    width: 80,
                     child: CircleAvatar(
                       foregroundColor: Colors.pink,
                       child: Text('Login'),

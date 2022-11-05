@@ -46,7 +46,7 @@ class RequestInterceptor extends Interceptor {
     //   err.error = appException;
     // }
     ApiException appException =
-        ApiException.create(err, err.response?.data['msg']);
+        ApiException.create(err, err.response?.statusMessage);
     err.error = appException;
     return super.onError(err, handler);
   }

@@ -1,6 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:test_get/ui/entrance/controller/login_controller.dart';
+import 'package:test_get/ui/entrance/login_clipper.dart';
+import 'package:test_get/ui/navigator/navigator_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,7 +14,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [_header(), _form()],
+          children: [_header(), _form(context)],
         ),
       ),
     );
@@ -20,13 +24,19 @@ class LoginPage extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          child: Image.asset('assets/login/login_bg.png'),
+          child: ClipPath(
+            clipper: LoginClipper(),
+            child: Container(
+              color: Colors.blue,
+              height: 200,
+            ),
+          ),
         ),
         const Positioned(
           top: 100,
           left: 20,
           child: Text(
-            'Welcome back',
+            'Welcome!',
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
@@ -38,7 +48,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Form _form() {
+  Form _form(BuildContext context) {
     var formKey = GlobalKey<FormState>();
     return Form(
       key: formKey,
@@ -47,7 +57,10 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
-              decoration: const InputDecoration(hintText: 'account'),
+              decoration: const InputDecoration(
+                hintText: 'input email or mobile',
+                label: Text('account'),
+              ),
               onSaved: (value) {
                 if (value != null) {
                   LoginController.instance.account = value;
@@ -61,7 +74,8 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             TextFormField(
-              decoration: const InputDecoration(hintText: 'password'),
+              decoration: const InputDecoration(
+                  hintText: 'input password', label: Text('password')),
               obscureText: true,
               onSaved: (value) {
                 if (value != null) {
@@ -77,18 +91,42 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 44,
               child: ElevatedButton(
                 child: const Text(
                   'Login in',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 onPressed: () {
                   var state = formKey.currentState;
                   if (state != null) {
                     if (state.validate()) {
                       state.save();
-                      LoginController.instance.login();
+
+                      EasyLoading.show(
+                          status: 'loading...',
+                          maskType: EasyLoadingMaskType.black);
+
+                      LoginController.instance.login().then((exception) {
+                        EasyLoading.dismiss();
+                        if (exception == null) {
+                          Get.off(const NavigatorPage());
+                        } else {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            headerAnimationLoop: false,
+                            title: 'Error',
+                            desc: exception.toString(),
+                            btnOkOnPress: () {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            btnOkIcon: Icons.cancel,
+                            btnOkColor: Colors.red,
+                          ).show();
+                        }
+                      });
                     }
                   }
                 },

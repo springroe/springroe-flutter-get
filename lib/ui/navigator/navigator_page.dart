@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_get/ui/cart/cart_page.dart';
+import 'package:test_get/ui/commodity/controller/commodity_controller.dart';
 import 'package:test_get/ui/home/home_page.dart';
 import 'package:test_get/ui/member/member_page.dart';
 import 'package:test_get/ui/navigator/controller/navigator_controller.dart';
@@ -22,6 +23,7 @@ class NavigatorPage extends StatelessWidget {
     Get.put(CartController());
     Get.put(MemberController());
     Get.put(LoginController());
+    Get.put(CommodityController());
 
     return Obx(
       () => Scaffold(

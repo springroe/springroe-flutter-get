@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         home: const NavigatorPage(),
         theme: ThemeData(fontFamily: 'Source'),
+        builder: EasyLoading.init(),
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

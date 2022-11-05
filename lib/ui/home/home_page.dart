@@ -6,6 +6,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:test_get/generated/l10n.dart';
 import 'package:test_get/model/goods_entity.dart';
 import 'package:test_get/ui/cart/controller/cart_controller.dart';
+import 'package:test_get/ui/commodity/commodity_page.dart';
+import 'package:test_get/ui/commodity/controller/commodity_controller.dart';
 import 'package:test_get/ui/home/controller/home_controller.dart';
 import 'package:test_get/ui/navigator/model/tab_item.dart';
 import 'package:test_get/utils/number_util.dart';
@@ -13,8 +15,7 @@ import 'package:waterfall_flow/waterfall_flow.dart';
 
 class HomePage extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(initialRefresh: false);
   final ScrollController _scrollController = ScrollController();
 
   HomePage({Key? key}) : super(key: key);
@@ -175,98 +176,104 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _item(GoodsEntity item) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            child: Image.asset(
-              item.picture,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              item.name,
-              style: const TextStyle(
-                  color: Colors.pink, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-            child: Text(
-              item.desc,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey[400],
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        CommodityController.instance.commodity(item);
+        Get.to(const CommodityPage());
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: Image.asset(
+                item.picture,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/ic_dollar.png',
-                        color: Colors.pink,
-                        width: 20,
-                        height: 20,
-                      ),
-                      Text(
-                        NumberUtil.priceFormat(item.price),
-                        style: const TextStyle(
-                            color: Colors.pink, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                item.name,
+                style: const TextStyle(
+                    color: Colors.pink, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+              child: Text(
+                item.desc,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
                 ),
-                IconButton(
-                  onPressed: () {
-                    CartController.instance.addCommodity(item);
-                  },
-                  icon: Obx(
-                    () => CartController.instance.commodities.indexWhere(
-                                (element) =>
-                                    element.goodsEntity.id == item.id) >
-                            -1
-                        ? Badge(
-                            badgeContent: Text(
-                              CartController
-                                  .instance
-                                  .commodities[CartController
-                                      .instance.commodities
-                                      .indexWhere((element) =>
-                                          element.goodsEntity.id == item.id)]
-                                  .quantity
-                                  .toString(),
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                            child: Image.asset(
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/ic_dollar.png',
+                          color: Colors.pink,
+                          width: 20,
+                          height: 20,
+                        ),
+                        Text(
+                          NumberUtil.priceFormat(item.price),
+                          style: const TextStyle(
+                              color: Colors.pink, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      CartController.instance.addCommodity(item);
+                    },
+                    icon: Obx(
+                      () => CartController.instance.commodities.indexWhere(
+                                  (element) =>
+                                      element.goodsEntity.id == item.id) >
+                              -1
+                          ? Badge(
+                              badgeContent: Text(
+                                CartController
+                                    .instance
+                                    .commodities[CartController
+                                        .instance.commodities
+                                        .indexWhere((element) =>
+                                            element.goodsEntity.id == item.id)]
+                                    .quantity
+                                    .toString(),
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              child: Image.asset(
+                                'assets/goods/ic_cart_add.png',
+                                color: Colors.pink,
+                              ),
+                            )
+                          : Image.asset(
                               'assets/goods/ic_cart_add.png',
                               color: Colors.pink,
                             ),
-                          )
-                        : Image.asset(
-                            'assets/goods/ic_cart_add.png',
-                            color: Colors.pink,
-                          ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
